@@ -17,6 +17,7 @@ body {
 
 .card {
   max-width: 330px;
+  height: 375px;
   background: rgb(35, 42, 52);
   background: linear-gradient(
     215deg,
@@ -43,7 +44,7 @@ h1 {
   margin: 15px 0px;
 }
 
-p {
+p,span {
   font-family: "Outfit", sans-serif;
   font-size: 15px;
   color: var(--text-color);
@@ -58,6 +59,12 @@ p {
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 0px 15px;
+}
+
+#warning{
+  color: red;
+  position: absolute;
+  display: none;
 }
 
 #submit-button {
@@ -102,3 +109,47 @@ label:hover{
 
 /* ---------- THANKS PAGE ---------- */
 
+.card-back{
+  display: none;
+  text-align: center;
+  opacity: 0;
+}
+.card-back-top{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.back-image{
+  align-self: center;
+}
+#rating-feedback{
+  display: inline-block;
+  background-color: var(--dark-blue);
+  color: var(--primary);
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-top:15px;
+}
+.hide{
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.show{
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity:1;}
+}

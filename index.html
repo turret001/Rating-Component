@@ -21,6 +21,7 @@
       .attribution {
         font-size: 11px;
         text-align: center;
+        color: white;
       }
       .attribution a {
         color: hsl(228, 45%, 44%);
@@ -35,49 +36,90 @@
     <!-- Rating state start -->
     <main>
       <div class="card">
-        <div class="card-top">
-          <img src="images/icon-star.svg" alt="" />
+        <div class="card-front">
+          <div class="card-top">
+            <img src="images/icon-star.svg" alt="" />
+          </div>
+          <div class="card-middle">
+            <h1>How did we do?</h1>
+            <p>
+              Please let us know how we did with your support request. All
+              feedback is appreciated to help us improve our offering!
+            </p>
+          </div>
+          <p id="warning">Please select a rating.</p>
+          <form class="card-rating" action="">
+            <div class="rating-button-wrapper">
+              <input type="radio" name="rating" id="rate1" value="1" />
+              <label for="rate1">1</label>
+
+              <input type="radio" name="rating" id="rate2" value="2" />
+              <label for="rate2">2</label>
+
+              <input type="radio" name="rating" id="rate3" value="3" />
+              <label for="rate3">3</label>
+
+              <input type="radio" name="rating" id="rate4" value="4" />
+              <label for="rate4">4</label>
+
+              <input type="radio" name="rating" id="rate5" value="5" />
+              <label for="rate5">5</label>
+            </div>
+            <button type="submit" id="submit-button" onclick="formSubmit()">
+              SUBMIT
+            </button>
+          </form>
         </div>
-        <div class="card-middle">
-          <h1>How did we do?</h1>
+        <div class="card-back">
+          <div class="card-back-top">
+            <img
+              class="back-image"
+              src="images/illustration-thank-you.svg"
+              alt=""
+              width="150"
+            />
+          </div>
+          <p id="rating-feedback">
+            You selected <span id="rating-text"></span> out of 5
+          </p>
+          <h1>Thank you!</h1>
           <p>
-            Please let us know how we did with your support request. All
-            feedback is appreciated to help us improve our offering!
+            We appreciate you taking the time to give a rating. If you ever need
+            more support, don't hesitate to get in touch!
           </p>
         </div>
-        <form class="card-rating" action="">
-          <div class="rating-button-wrapper">
-            <input type="radio" name="rating" id="rate1" value="1" />
-            <label for="rate1">1</label>
-
-            <input type="radio" name="rating" id="rate2" value="2" />
-            <label for="rate2">2</label>
-
-            <input type="radio" name="rating" id="rate3" value="3" />
-            <label for="rate3">3</label>
-
-            <input type="radio" name="rating" id="rate4" value="4" />
-            <label for="rate4">4</label>
-
-            <input type="radio" name="rating" id="rate5" value="5" />
-            <label for="rate5">5</label>
-          </div>
-          <button type="submit" id="submit-button">SUBMIT</button>
-        </form>
       </div>
-      <!-- You selected <RATING> out of 5
-
-      Thank you!
-
-      We appreciate you taking the time to give a rating. If you ever need more support, 
-      don't hesitate to get in touch! -->
     </main>
 
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
+      >. Coded by <a href="https://github.com/turret001">me!</a>.
     </div>
+    <script>
+      const front = document.querySelector(".card-front");
+      const back = document.querySelector(".card-back");
+      document.getElementById("submit-button").addEventListener("click", function (event) {event.preventDefault();});
+
+      function formSubmit() {
+        //check if a rating was selected and if so, set span to the selected rating
+        if (document.querySelector('input[name="rating"]:checked') !== null) {
+          document.getElementById("rating-text").innerHTML = document.querySelector('input[name="rating"]:checked').value;
+          front.classList.add("hide");
+          setTimeout(showBack, 2000);
+        } else {
+          document.getElementById("warning").style.display = "block";
+          return
+        }
+        
+        
+      }
+      function showBack(){
+        front.style.display = "none";
+        back.style.display = "block";
+        back.classList.add("show");
+      }
+    </script>
   </body>
 </html>
